@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/lodash.js"></script>
+		<script type="text/javascript" src="../js/backbone.js"></script>
+		<script type="text/javascript" src="../js/spin.min.js"></script>
+		<script type="text/javascript" src="../agent.js"></script>
+		<script type="text/javascript">
+      var Cell = Backbone.Model.extend({
+        x : -1,
+        y : -1,
+        alive : false,
+        nextAlive : false,
+
+        initialize : function() {
+          this.id = this.get('x') + "," + this.get('y');
+        },
+
+        computeNextState : function() {
+          var na = col.neighbors(this);
+
+          if (this.get('alive')) {
+            if (na == 2 || na == 3) {
+              this.set({
+                'nextAlive' : true
+              })
+            } else {
+              this.set({
+                'nextAlive' : false
+              })
+            }
+          } else {
+            if (na == 3) {
+              this.set({
+                'nextAlive' : true
+              })
+            } else {
+              this.set({
+                'nextAlive' : false
+              })
+            }
+          }
+        },
+
+        transition : function() {
+          this.set({
+            'alive' : this.get('nextAlive')
+          });
+        }
+      });
+
+      var CellView = Backbone.View.extend({
+        tagName : 'td',
+        initialize : function() {
+          this.model.bind('change:alive', _.bind(this.reRender, this));
+        },
+        render : function() {
+          this.reRender();
+        },
+        reRender : function() {
+          $(this.el).attr({
+            'bgcolor' : this.model.get('alive') ? '#000' : '#FFF'
+          });
+        }
+      });
+
+      var CellCollection = Backbone.Collection.extend({
+        model : Cell,
+        neighbors : function(model) {
+          var ns = 0;
+          _([-1, 0, 1]).each(function(xd) {
+            _([-1, 0, 1]).each(function(yd) {
+              if (xd != 0 || yd != 0) {
+                n = col.get((model.get('x') + xd) + "," + (model.get('y') + yd))
+                if (n && n.get('alive')) {
+                  ns++;
+                }
+              }
+            });
+          });
+          return ns;
+        }
+      });
+		</script>
+		<style>
+			html, body {
+				height: 100%;
+				padding: 0px;
+				margin: 0px;
+			}
+			table#world {
+				width: 100%;
+				height: 100%;
+				padding: 0px;
+				margin: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<table id="world"></table>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+header h1 {
+	text-align: center;
+}
+
+div#main-content{
+	height: auto;
+}
+
+footer {
+	position: absolute;
+	bottom: 0px;
+}
