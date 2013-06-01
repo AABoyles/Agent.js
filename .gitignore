@@ -22,6 +22,7 @@
 .del-*
 .make.state
 .nse_depinfo
+.project
 CVS.adm
 RCS
 RCSLOG
