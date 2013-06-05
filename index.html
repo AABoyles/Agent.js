@@ -1,100 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
 
-    <title>Agent.js by AABoyles</title>
-  </head>
+		<title>Agent.js by Tony Boyles</title>
+	</head>
 
-  <body>
-    <header>
-      <div class="inner">
-        <h1>Agent.js</h1>
-        <h2>A Backbone-powered framework for constructing Agent-Based Models using pure Javascript.</h2>
-        <a href="https://github.com/AABoyles/Agent.js" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+	<body>
+		<header>
+			<div class="inner">
+				<h1>Agent.js</h1>
+				<h2>A Backbone-powered framework for constructing Agent-Based Models using pure Javascript.</h2>
+				<a href="https://github.com/AABoyles/Agent.js" class="button"><small>View project on</small>GitHub</a>
+			</div>
+		</header>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <p>Agent.js is Copyright 2013, <a href="mailto:AABoyles@gmail.com">Tony Boyles</a></p>
+		<div id="content-wrapper">
+			<div class="inner clearfix">
+				<section id="main-content">
+					<p>
+						Agent.js is Copyright 2013, <a href="mailto:AABoyles@gmail.com">Tony Boyles</a>
+					</p>
 
-<h2>
-<a name="what-is-it" class="anchor" href="#what-is-it"><span class="octicon octicon-link"></span></a>What is it?</h2>
+					<h2><a name="what-is-it" class="anchor" href="#what-is-it"><span class="octicon octicon-link"></span></a>What is it?</h2>
 
-<p>Agent-based modelling is an analytic approach to discovering emergent behaviors in large groups by specifying simple rules to which individuals adhere.  Agent.js is intended to be a way to accomplish that in Javascript, automatically handling the things that are present in every model (like time, agents, controls and visualizations), and letting the coder/analyst concentrate on the <em>model</em>, not the code.</p>
+					<p>
+						Agent-based modelling is an analytic approach to discovering emergent behaviors in large groups by specifying simple rules to which individuals adhere.  Agent.js is intended to be a way to accomplish that in Javascript, automatically handling the things that are present in every model (like time, agents, controls and visualizations), and letting the coder/analyst concentrate on the <em>model</em>, not the code.
+					</p>
 
-<h2>
-<a name="why-do-this" class="anchor" href="#why-do-this"><span class="octicon octicon-link"></span></a>Why do this?</h2>
+					<h2><a name="why-do-this" class="anchor" href="#why-do-this"><span class="octicon octicon-link"></span></a>Why do this?</h2>
 
-<p>I learned Agent-Based Modelling using <a href="http://ccl.northwestern.edu/netlogo/">NetLogo</a>.  It was a great first-brush with the idea, but it has some pretty big deficiencies:</p>
+					<p>
+						I learned Agent-Based Modelling using <a href="http://ccl.northwestern.edu/netlogo/">NetLogo</a>.  It was a great first-brush with the idea, but it has some pretty big deficiencies:
+					</p>
 
-<ul>
-<li>It's based on the Logo Language, which is ancient and silly and no one actually uses.  I figured everyone and their dog learns some Javascript at some point, so it's a good alternative.</li>
-<li>It compiles to Java Byte-code, which is itself a strength of the language.  However, that results in the primary packaging/presentation of models being Java applets.  Really?  It's 2013 and Java has no place in the browser.  I wanted to put the same kind of visualizations on a Canvas, and just use normal HTML form elements to control the model.</li>
-<li>No one takes it seriously.  Ever tried to <a href="http://jobsearch.monster.com/search/?q=NetLogo">find a job</a> writing Netlogo code?  It's pretty slim pickin's.  My hope is that a newer approach which is more in-line with current software development practices will help spur along interest in the skill (Note to self: an ABM showing this would be a great demo).</li>
-</ul><h2>
-<a name="current-capabilities" class="anchor" href="#current-capabilities"><span class="octicon octicon-link"></span></a>Current Capabilities</h2>
+					<ul>
+						<li>
+							It's based on the Logo Language, which is ancient and silly and no one actually uses.  I figured everyone and their dog learns some Javascript at some point, so it's a good alternative.
+						</li>
+						<li>
+							It compiles to Java Byte-code, which is itself a strength of the language.  However, that results in the primary packaging/presentation of models being Java applets.  Really?  It's 2013 and Java has no place in the browser.  I wanted to put the same kind of visualizations on a Canvas, and just use normal HTML form elements to control the model.
+						</li>
+						<li>
+							No one takes it seriously.  Ever tried to <a href="http://jobsearch.monster.com/search/?q=NetLogo">find a job</a> writing Netlogo code?  It's pretty slim pickin's.  My hope is that a newer approach which is more in-line with current software development practices will help spur along interest in the skill (Note to self: an ABM showing this would be a great demo).
+						</li>
+					</ul><h2><a name="current-capabilities" class="anchor" href="#current-capabilities"><span class="octicon octicon-link"></span></a>Current Capabilities</h2>
 
-<p>None.  This is still just a fledgling idea, probably years pre-alpha.</p>
+					<p>
+						None.  This is still just a fledgling idea, probably years pre-alpha.
+					</p>
 
-<h2>
-<a name="future-capabilities" class="anchor" href="#future-capabilities"><span class="octicon octicon-link"></span></a>Future Capabilities</h2>
+					<h2><a name="future-capabilities" class="anchor" href="#future-capabilities"><span class="octicon octicon-link"></span></a>Future Capabilities</h2>
 
-<ul>
-<li>Three-line model development.  I claim that the simplest model should need no more than three lines to implement, and the library should handle the rest.</li>
-<li>I'd like to integrate an Open-Source 3D JavaScript rendering engine to enable 3D modeling, but that's just a pipe-dream for now.</li>
-</ul><h2>
-<a name="help-me" class="anchor" href="#help-me"><span class="octicon octicon-link"></span></a>Help Me!</h2>
+					<ul>
+						<li>
+							Three-line model development.  I claim that the simplest model should need no more than three lines to implement, and the library should handle the rest.
+						</li>
+						<li>
+							I'd like to integrate an Open-Source 3D JavaScript rendering engine to enable 3D modeling, but that's just a pipe-dream for now.
+						</li>
+					</ul><h2><a name="help-me" class="anchor" href="#help-me"><span class="octicon octicon-link"></span></a>Help Me!</h2>
 
-<p>This project is a big idea.  I'm but a single, modest web developer.  If you dig the idea, jump in and help me out.  I'll look at whatever merge requests you send.</p>
+					<p>
+						This project is a big idea.  I'm but a single, modest web developer.  If you dig the idea, jump in and help me out.  I'll look at whatever merge requests you send.
+					</p>
 
-<h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+					<h2><a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+					<pre><code>
+Agent.js is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
 
-<pre><code>Agent.js is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+Agent.js is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-Agent.js is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with
+Agent.js.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</code></pre>
 
-You should have received a copy of the GNU General Public License
-along with Agent.js.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
-</code></pre>
-        </section>
+				</section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/AABoyles/Agent.js/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/AABoyles/Agent.js/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+				<aside id="sidebar">
+					<a href="https://github.com/AABoyles/Agent.js/zipball/master" class="button"> <small>Download</small> .zip file </a>
+					<a href="https://github.com/AABoyles/Agent.js/tarball/master" class="button"> <small>Download</small> .tar.gz file </a>
 
-          <p class="repo-owner"><a href="https://github.com/AABoyles/Agent.js"></a> is maintained by <a href="https://github.com/AABoyles">AABoyles</a>.</p>
+					<p class="repo-owner">
+						<a href="https://github.com/AABoyles/Agent.js">Agent.js</a> is owned, developed, and maintained by <a href="https://github.com/AABoyles">Tony Boyles</a>.
+					</p>
 
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
-
-  
-  </body>
+					<p>
+						Thanks to <a href="http://pages.github.com">GitHub Pages</a> for the generation and hosting, and <a href="http://twitter.com/jasonlong">Jason Long</a> for the Architect theme.
+					</p>
+				</aside>
+			</div>
+		</div>
+	</body>
 </html>
