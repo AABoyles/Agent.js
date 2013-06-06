@@ -23,7 +23,15 @@ None. This is still just a fledgling idea, probably years pre-alpha.
 
 Future Capabilities
 -------------------
-* Three-line model development. I claim that the simplest model should need no more than three lines to implement, and the library should handle the rest.
+* Four-line model development. I claim that the simplest model should need no more than three lines to implement, and the library should handle the rest.  The simplest model should work something like this:
+
+    myAgent  = new Agent('div', {attributes}, {options});
+    myAgents = new Population(myAgent, {options});
+    myModel  = new ABModel($('someDOMElement'), [myAgents]);
+    myModel.run();
+
+Now, these are the four least interesting lines in any model, but they should be all it take to get a valid model going.
+
 * I'd like to integrate an Open-Source 3D JavaScript rendering engine to enable 3D modeling, but that's just a pipe-dream for now.
 
 Help Me!
@@ -32,7 +40,6 @@ This project is a big idea. I'm but a single, modest web developer. If you dig t
 
 License
 -------
-
     Agent.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
