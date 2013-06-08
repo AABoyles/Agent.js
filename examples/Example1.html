@@ -1,93 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 	<head>
+		<title>Example 1: The Game of Life</title>
 		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/jquery-ui.js"></script>
 		<script type="text/javascript" src="../js/lodash.js"></script>
 		<script type="text/javascript" src="../js/backbone.js"></script>
 		<script type="text/javascript" src="../js/spin.min.js"></script>
 		<script type="text/javascript" src="../agent.js"></script>
+		<link type="text/css" rel="stylesheet" href="../css/jquery-ui.css" />
+		<link type="text/css" rel="stylesheet" href="../css/style.css" />
 		<script type="text/javascript">
-      var Cell = Backbone.Model.extend({
-        x : -1,
-        y : -1,
-        alive : false,
-        nextAlive : false,
+			$(function(){
+				$("#timeslider").slider({
+					min : 0,
+					max : 1000,
+					step : 50,
+					slide : function(event, ui) {
+						stepTime = ui.value
+						$("#step-time-length").text(ui.value);
+					}
+				});
+			});
 
-        initialize : function() {
-          this.id = this.get('x') + "," + this.get('y');
-        },
+			var Cell = Agent.extend({
+				x : -1,
+				y : -1,
+				alive : false,
+				nextAlive : false,
 
-        computeNextState : function() {
-          var na = col.neighbors(this);
+				initialize : function() {
+					this.id = this.get('x') + "," + this.get('y');
+				},
 
-          if (this.get('alive')) {
-            if (na == 2 || na == 3) {
-              this.set({
-                'nextAlive' : true
-              })
-            } else {
-              this.set({
-                'nextAlive' : false
-              })
-            }
-          } else {
-            if (na == 3) {
-              this.set({
-                'nextAlive' : true
-              })
-            } else {
-              this.set({
-                'nextAlive' : false
-              })
-            }
-          }
-        },
+				computeNextState : function() {
+					var na = col.neighbors(this);
 
-        transition : function() {
-          this.set({
-            'alive' : this.get('nextAlive')
-          });
-        }
-      });
+					if (this.get('alive')) {
+						if (na == 2 || na == 3) {
+							this.set({
+								'nextAlive' : true
+							})
+						} else {
+							this.set({
+								'nextAlive' : false
+							})
+						}
+					} else {
+						if (na == 3) {
+							this.set({
+								'nextAlive' : true
+							})
+						} else {
+							this.set({
+								'nextAlive' : false
+							})
+						}
+					}
+				},
 
-      var CellView = Backbone.View.extend({
-        tagName : 'td',
-        initialize : function() {
-          this.model.bind('change:alive', _.bind(this.reRender, this));
-        },
-        render : function() {
-          this.reRender();
-        },
-        reRender : function() {
-          $(this.el).attr({
-            'bgcolor' : this.model.get('alive') ? '#000' : '#FFF'
-          });
-        }
-      });
+				transition : function() {
+					this.set({
+						'alive' : this.get('nextAlive')
+					});
+				}
+			});
 
-      var CellCollection = Backbone.Collection.extend({
-        model : Cell,
-        neighbors : function(model) {
-          var ns = 0;
-          _([-1, 0, 1]).each(function(xd) {
-            _([-1, 0, 1]).each(function(yd) {
-              if (xd != 0 || yd != 0) {
-                n = col.get((model.get('x') + xd) + "," + (model.get('y') + yd))
-                if (n && n.get('alive')) {
-                  ns++;
-                }
-              }
-            });
-          });
-          return ns;
-        }
-      });
+			var CellView = Backbone.View.extend({
+				tagName : 'td',
+				initialize : function() {
+					this.model.bind('change:alive', _.bind(this.render, this));
+				},
+				render : function() {
+					$(this.el).attr({
+						'bgcolor' : this.model.get('alive') ? '#000' : '#FFF'
+					});
+				}
+			});
+
+			var CellCollection = Population.extend({
+				model : Cell,
+				neighbors : function(model) {
+					var ns = 0;
+					_([-1, 0, 1]).each(function(xd) {
+						_([-1, 0, 1]).each(function(yd) {
+							if (xd != 0 || yd != 0) {
+								n = col.get((model.get('x') + xd) + "," + (model.get('y') + yd))
+								if (n && n.get('alive')) {
+									ns++;
+								}
+							}
+						});
+					});
+					return ns;
+				}
+			});
 		</script>
 		<style>
-			html, body {
-				height: 100%;
-				padding: 0px;
-				margin: 0px;
+			#timeslider {
+				margin: 0 auto;
+				width: 80%;
+			}
+			.widget-text{
+				font:1em;
+				width: 100%;
+				text-align:center;
 			}
 			table#world {
 				width: 100%;
@@ -98,6 +115,21 @@
 		</style>
 	</head>
 	<body>
-		<table id="world"></table>
+		<header>
+			<h1>Example 1: The Game of Life</h1>
+		</header>
+
+		<div id="content">
+			<table id="world"></table>
+		</div>
+
+		<div id="sidebar">
+			<div id="controls">
+				<div id="timeslider"></div>
+			</div>
+			<div id="stats">
+
+			</div>
+		</div>
 	</body>
 </html>
