@@ -11,18 +11,6 @@
 		<link type="text/css" rel="stylesheet" href="../css/jquery-ui.css" />
 		<link type="text/css" rel="stylesheet" href="../css/style.css" />
 		<script type="text/javascript">
-			$(function(){
-				$("#timeslider").slider({
-					min : 0,
-					max : 1000,
-					step : 50,
-					slide : function(event, ui) {
-						stepTime = ui.value
-						$("#step-time-length").text(ui.value);
-					}
-				});
-			});
-
 			var Cell = Agent.extend({
 				x : -1,
 				y : -1,
@@ -33,7 +21,7 @@
 					this.id = this.get('x') + "," + this.get('y');
 				},
 
-				computeNextState : function() {
+                next : function() {
 					var na = col.neighbors(this);
 
 					if (this.get('alive')) {
@@ -57,12 +45,6 @@
 							})
 						}
 					}
-				},
-
-				transition : function() {
-					this.set({
-						'alive' : this.get('nextAlive')
-					});
 				}
 			});
 
@@ -78,7 +60,7 @@
 				}
 			});
 
-			var CellCollection = Population.extend({
+			var Cells = Population.extend({
 				model : Cell,
 				neighbors : function(model) {
 					var ns = 0;
@@ -95,16 +77,85 @@
 					return ns;
 				}
 			});
+
+			$(function() {
+				var models = new Array();
+				var trs = $(document.createElement('tbody'));
+				for (var x = 0; x < 50; x++) {
+					var tr = $(document.createElement('tr'));
+					for (var y = 0; y < 100; y++) {
+						var alive = Math.floor(Math.random() * 2) == 1;
+						var cell = new Cell({
+							'x' : x,
+							'y' : y,
+							'alive' : alive
+						});
+						models.push(cell);
+						var cv = new CellView({
+							model : cell
+						});
+						cv.render();
+						tr.append(cv.el);
+					}
+					trs.append(tr)
+				}
+				$('#world').html(trs)
+
+				col = new Cells(models);
+
+				$("#timeslider").slider({
+					min : 0,
+					max : 1000,
+					step : 50,
+					slide : function(event, ui) {
+						stepTime = ui.value
+						$("#step-time-length").text(ui.value);
+					}
+				});
+				$("#beginning").button({
+					text : false,
+					icons : {
+						primary : "ui-icon-seek-start"
+					}
+				});
+				$("#play").button({
+					text : false,
+					label : "pause",
+					icons : {
+						primary : "ui-icon-pause"
+					}
+				}).click(function() {
+					var options;
+					if ($(this).text() === "play") {
+						options = {
+							label : "pause",
+							icons : {
+								primary : "ui-icon-pause"
+							}
+						};
+						timer = setInterval(step, stepTime);
+					} else {
+						options = {
+							label : "play",
+							icons : {
+								primary : "ui-icon-play"
+							}
+						};
+						clearInterval(timer);
+					}
+					$(this).button("option", options);
+				});
+			});
 		</script>
 		<style>
 			#timeslider {
 				margin: 0 auto;
 				width: 80%;
 			}
-			.widget-text{
-				font:1em;
+			.widget-text {
+				font: 1em;
 				width: 100%;
-				text-align:center;
+				text-align: center;
 			}
 			table#world {
 				width: 100%;
@@ -125,10 +176,34 @@
 
 		<div id="sidebar">
 			<div id="controls">
+				<div id="toolbar">
+					<button id="beginning">
+						go to beginning
+					</button>
+					<button id="play">
+						play
+					</button>
+				</div>
 				<div id="timeslider"></div>
 			</div>
-			<div id="stats">
 
+			<div id="stats">
+				<table>
+					<thead></thead>
+					<tbody>
+						<tr>
+							<td>Step Time:</td>
+							<td id="step-time-length">0</td>
+							<td>ms</td>
+						</tr>
+						<tr>
+							<td>Steps:</td>
+							<td id="num-steps">0</td>
+							<td></td>
+						</tr>
+					</tbody>
+					<tfoot></tfoot>
+				</table>
 			</div>
 		</div>
 	</body>
